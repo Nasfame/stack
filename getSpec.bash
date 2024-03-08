@@ -11,7 +11,8 @@ elif [[ $(uname) == "Darwin" ]]; then
 fi
 echo 
 # CPU
-echo -n  "\nCPU: Arch: ${uname -m} "
+echo -n  "CPU: $(uname -m) "
+echo
 echo "Number of CPU cores:" $(nproc --all)
 echo "Number of Available CPU cores:" $(nproc)
 if [[ $(uname) == "Linux" ]]; then
