@@ -48,10 +48,10 @@ get_gpu_info() {
     fi
 
     if [[ $(uname) == "Darwin" ]]; then
-        echo "Apple GPUs: $(get_macos_gpu_count)"
+        echo "Apple GPUs: $(echo `get_macos_gpu_count`)"
     fi
 
-    if [[ -z $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null) && -z $(lspci | grep -i vga | grep -i amd | cut -d '"' -f 2) && $(uname) != "Darwin" ]]; then
+    if command -v lspci &> /dev/null && [[ -z $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null) && -z $(lspci | grep -i vga | grep -i amd | cut -d '"' -f 2) && $(uname) != "Darwin" ]]; then
         echo "No GPU detected."
     fi
 }
